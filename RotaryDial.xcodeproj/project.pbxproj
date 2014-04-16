@@ -20,6 +20,11 @@
 		5802B45718C10FFB0017B151 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 5802B45518C10FFB0017B151 /* InfoPlist.strings */; };
 		5802B45918C10FFB0017B151 /* RotaryDialTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5802B45818C10FFB0017B151 /* RotaryDialTests.m */; };
 		7DE819F8B3AC4C0184EEDD11 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = E6C33B20E6644F608B4FAA16 /* Settings.bundle */; };
+		8457B19918FDE2CF000B08AB /* NRDRotaryDialSegment.m in Sources */ = {isa = PBXBuildFile; fileRef = 8457B19818FDE2CF000B08AB /* NRDRotaryDialSegment.m */; };
+		8457B19C18FED8C9000B08AB /* NRDRotaryDial.m in Sources */ = {isa = PBXBuildFile; fileRef = 8457B19B18FED8C9000B08AB /* NRDRotaryDial.m */; };
+		8457B19F18FEE54C000B08AB /* UIColor+Adjustable.m in Sources */ = {isa = PBXBuildFile; fileRef = 8457B19E18FEE54C000B08AB /* UIColor+Adjustable.m */; };
+		84EB0FE418DBA55600E71898 /* NRDRotaryDialViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84EB0FE218DBA55600E71898 /* NRDRotaryDialViewController.m */; };
+		84EB0FE518DBA55600E71898 /* NRDRotaryDialViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84EB0FE318DBA55600E71898 /* NRDRotaryDialViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +54,16 @@
 		5802B45418C10FFB0017B151 /* RotaryDialTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "RotaryDialTests-Info.plist"; sourceTree = "<group>"; };
 		5802B45618C10FFB0017B151 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		5802B45818C10FFB0017B151 /* RotaryDialTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RotaryDialTests.m; sourceTree = "<group>"; };
+		8457B19718FDE2CF000B08AB /* NRDRotaryDialSegment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NRDRotaryDialSegment.h; sourceTree = "<group>"; };
+		8457B19818FDE2CF000B08AB /* NRDRotaryDialSegment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NRDRotaryDialSegment.m; sourceTree = "<group>"; };
+		8457B19A18FED8C9000B08AB /* NRDRotaryDial.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NRDRotaryDial.h; sourceTree = "<group>"; };
+		8457B19B18FED8C9000B08AB /* NRDRotaryDial.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NRDRotaryDial.m; sourceTree = "<group>"; };
+		8457B19D18FEE54C000B08AB /* UIColor+Adjustable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+Adjustable.h"; sourceTree = "<group>"; };
+		8457B19E18FEE54C000B08AB /* UIColor+Adjustable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+Adjustable.m"; sourceTree = "<group>"; };
+		8457B1A018FEF68E000B08AB /* NRDMath.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NRDMath.h; sourceTree = "<group>"; };
+		84EB0FE118DBA55500E71898 /* NRDRotaryDialViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NRDRotaryDialViewController.h; sourceTree = "<group>"; };
+		84EB0FE218DBA55600E71898 /* NRDRotaryDialViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NRDRotaryDialViewController.m; sourceTree = "<group>"; };
+		84EB0FE318DBA55600E71898 /* NRDRotaryDialViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NRDRotaryDialViewController.xib; sourceTree = "<group>"; };
 		E6C33B20E6644F608B4FAA16 /* Settings.bundle */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "wrapper.plug-in"; name = Settings.bundle; path = RotaryDial/Resources/Settings.bundle; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
@@ -114,6 +129,7 @@
 			children = (
 				5802B44218C10FFB0017B151 /* NRDAppDelegate.h */,
 				5802B44318C10FFB0017B151 /* NRDAppDelegate.m */,
+				8457B1A018FEF68E000B08AB /* NRDMath.h */,
 				5802B43A18C10FFB0017B151 /* Supporting Files */,
 				84561B60A0154CB0B923481A /* Categories */,
 				AC6199873D8745D3A0F60088 /* Models */,
@@ -156,6 +172,8 @@
 		84561B60A0154CB0B923481A /* Categories */ = {
 			isa = PBXGroup;
 			children = (
+				8457B19D18FEE54C000B08AB /* UIColor+Adjustable.h */,
+				8457B19E18FEE54C000B08AB /* UIColor+Adjustable.m */,
 			);
 			path = Categories;
 			sourceTree = "<group>";
@@ -196,6 +214,9 @@
 		C39E31E3426C4D8F8945D5A6 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				84EB0FE118DBA55500E71898 /* NRDRotaryDialViewController.h */,
+				84EB0FE218DBA55600E71898 /* NRDRotaryDialViewController.m */,
+				84EB0FE318DBA55600E71898 /* NRDRotaryDialViewController.xib */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -203,6 +224,10 @@
 		CFC6577CC671420791EBB2CD /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				8457B19718FDE2CF000B08AB /* NRDRotaryDialSegment.h */,
+				8457B19818FDE2CF000B08AB /* NRDRotaryDialSegment.m */,
+				8457B19A18FED8C9000B08AB /* NRDRotaryDial.h */,
+				8457B19B18FED8C9000B08AB /* NRDRotaryDial.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -294,6 +319,7 @@
 			files = (
 				5802B43E18C10FFB0017B151 /* InfoPlist.strings in Resources */,
 				5802B44618C10FFB0017B151 /* Images.xcassets in Resources */,
+				84EB0FE518DBA55600E71898 /* NRDRotaryDialViewController.xib in Resources */,
 				7DE819F8B3AC4C0184EEDD11 /* Settings.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -344,8 +370,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8457B19F18FEE54C000B08AB /* UIColor+Adjustable.m in Sources */,
 				5802B44018C10FFB0017B151 /* main.m in Sources */,
+				84EB0FE418DBA55600E71898 /* NRDRotaryDialViewController.m in Sources */,
+				8457B19C18FED8C9000B08AB /* NRDRotaryDial.m in Sources */,
 				5802B44418C10FFB0017B151 /* NRDAppDelegate.m in Sources */,
+				8457B19918FDE2CF000B08AB /* NRDRotaryDialSegment.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
