@@ -35,8 +35,8 @@
     // Do any additional setup after loading the view from its nib.
     
     self.dial = [[NRDRotaryDial alloc] initWithRadius:120 thickness:40];
-//    self.dial.ringColor = [UIColor yellowColor];
-//    self.dial.handleColor = [UIColor orangeColor];
+    self.dial.ringColor = [UIColor yellowColor];
+    self.dial.handleColor = [UIColor orangeColor];
     self.dial.minimumValue = 0;
     self.dial.maximumValue = 100;
     [self.dial addTarget:self action:@selector(dialValueDidChange:) forControlEvents:UIControlEventValueChanged];
@@ -65,21 +65,21 @@
 
 - (void)leftSegmentTapped
 {
-    self.dial.value = [self nextTwelfthClockwise:NO];
+    self.dial.value = [self valueForNextTwelfthClockwise:NO];
 }
 
 - (void)rightSegmentTapped
 {
-    self.dial.value = [self nextTwelfthClockwise:YES];
+    self.dial.value = [self valueForNextTwelfthClockwise:YES];
 }
 
 #pragma mark - Helper Methods
 
-- (CGFloat)nextTwelfthClockwise:(BOOL)clockwise
+- (CGFloat)valueForNextTwelfthClockwise:(BOOL)clockwise
 {
     // Safety catch!
     if (self.dial.maximumValue == self.dial.minimumValue) {
-        return 0.0;
+        return self.dial.minimumValue;
     }
     
     CGFloat percent = (self.dial.value - self.dial.minimumValue)/(self.dial.maximumValue - self.dial.minimumValue);

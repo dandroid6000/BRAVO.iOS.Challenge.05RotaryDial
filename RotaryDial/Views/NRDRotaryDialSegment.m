@@ -7,9 +7,18 @@
 //
 
 #import "NRDRotaryDialSegment.h"
+#import "UIColor+Adjustable.h"
 #import "NRDMath.h"
 
+@interface NRDRotaryDialSegment ()
+
+@property (nonatomic, strong) UIColor *drawColor;
+
+@end
+
 @implementation NRDRotaryDialSegment
+
+@synthesize highlighted=_highlighted;
 
 - (id)initWithInnerRadius:(NSUInteger)innerRadius
               outerRadius:(NSUInteger)outerRadius
@@ -25,6 +34,7 @@
         self.startAngle = normalize_angle(startAngle);
         self.endAngle = normalize_angle(endAngle);
         self.color = [UIColor lightGrayColor];
+        self.drawColor = self.color;
     }
     return self;
 }
@@ -43,15 +53,16 @@
     // Drawing code
     CGContextRef contextRef = UIGraphicsGetCurrentContext();
     
+    // Thickness translates to line width
     CGContextSetLineWidth(contextRef, self.outerRadius - self.innerRadius);
     
     CGPoint arcCenter = CGPointMake(self.outerRadius, self.outerRadius);
     CGFloat radius = (self.innerRadius + self.outerRadius)/2.0;
     
-    // Note: fudging endAngle by half a degree to avoid gaps
+    // Note: fudging endAngle by half a degree (0.01 rad) to avoid gaps
     CGContextAddArc(contextRef, arcCenter.x, arcCenter.y, radius, self.startAngle, self.endAngle + 0.01, false);
 
-    CGContextSetStrokeColorWithColor(contextRef, self.color.CGColor);
+    CGContextSetStrokeColorWithColor(contextRef, self.drawColor.CGColor);
     
     CGContextDrawPath(contextRef, kCGPathStroke);
 }
@@ -77,12 +88,30 @@
     CGFloat angleR = normalize_angle(angle - self.startAngle);
     
     // Now check if point angle is greater than endAngle (i.e. outside range)
-    // Note: 0 counts as in, endAngle counts as out (to eliminate overlap)
+    // Note: 0 counts as in, endAngle counts as out (eliminates overlap)
     if (angleR >= endAngleR) {
         return NO;
     }
     
     return [super pointInside:point withEvent:event];
+}
+
+#pragma mark - Accessor Methods
+
+- (void)setColor:(UIColor *)color
+{
+    _color = color;
+    self.drawColor = self.highlighted ? [self.color adjustedByMultiplier:0.9] : self.color;
+    [self setNeedsDisplay];
+}
+
+- (void)setHighlighted:(BOOL)highlighted
+{
+    _highlighted = highlighted;
+    
+    // Show highlight
+    self.drawColor = highlighted ? [self.color adjustedByMultiplier:0.9] : self.color;
+    [self setNeedsDisplay];
 }
 
 @end

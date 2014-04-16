@@ -71,6 +71,7 @@ static const CGFloat kAngleHandleRight = M_PI*1.58;
 
 - (id)initWithFrame:(CGRect)frame
 {
+    // Make a dial that fits the frame with a 25% thickness
     NSUInteger radius = MIN(frame.size.width, frame.size.height)/2;
     NSUInteger thickness = radius * 0.25;
     return [self initWithRadius:radius thickness:thickness];
@@ -93,6 +94,7 @@ static const CGFloat kAngleHandleRight = M_PI*1.58;
 {
     _ringColor = ringColor;
     
+    // Update the subviews
     self.leftSegment.color = ringColor;
     self.rightSegment.color = ringColor;
     self.handleSegment.color = self.handleColor ?: [ringColor darkerColor];
@@ -103,6 +105,7 @@ static const CGFloat kAngleHandleRight = M_PI*1.58;
 {
     _handleColor = handleColor;
     
+    // Update the subview
     self.handleSegment.color = handleColor ?: [self.ringColor darkerColor];
     [self.handleSegment setNeedsDisplay];
 }
@@ -110,13 +113,17 @@ static const CGFloat kAngleHandleRight = M_PI*1.58;
 - (void)setValue:(CGFloat)value
 {
     if (self.minimumValue <= value && value <= self.maximumValue) {
-        if (self.minimumValue == self.maximumValue) {
-            [self rotateToAngle:0];
-        } else {
-            _value = value;
+        _value = value;
+        
+        // Rotate to show the new value
+        if (self.minimumValue != self.maximumValue) {
             CGFloat percent = (value - self.minimumValue)/(self.maximumValue - self.minimumValue);
-            [self rotateToAngle:percent * 2*M_PI];
+            self.transform = CGAffineTransformMakeRotation(percent * 2*M_PI);
+        } else {
+            self.transform = CGAffineTransformIdentity;
         }
+        
+        // Send actions to targets
         [self sendActionsForControlEvents:UIControlEventValueChanged];
     }
 }
@@ -136,11 +143,11 @@ static const CGFloat kAngleHandleRight = M_PI*1.58;
     CGPoint point = [touch locationInView:self.handleSegment];
     CGFloat angle = angle_for_point(point, self.handleSegment.center);
     
-    // Subtract off starting angle and apply transformation
+    // Subtract off starting angle and add rotation to transform
     angle = angle - self.startDragAngle;
     self.transform = CGAffineTransformRotate(self.transform, angle);
 
-    // Determine the absolute angle (using in the transform) and set the value
+    // Determine the absolute angle (using the transform) and set the value
     CGFloat absoluteAngle = angle_from_transform(self.transform);
     self.value = [self valueForAngle:absoluteAngle];
     
@@ -159,17 +166,12 @@ static const CGFloat kAngleHandleRight = M_PI*1.58;
         [self.delegate rightSegmentTapped];
     }
     else if (sender == self.handleSegment) {
+        // Anything to do?
         NSLog(@"DidReleaseHandle");
     }
 }
 
 #pragma mark - Helper Methods
-
-- (void)rotateToAngle:(CGFloat)angle
-{
-    angle = normalize_angle(angle);
-    self.transform = CGAffineTransformMakeRotation(angle);
-}
 
 - (CGFloat)valueForAngle:(CGFloat)angle
 {
